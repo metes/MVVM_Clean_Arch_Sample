@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="@dimen/space_med"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_small"
+        android:orientation="vertical"
+        android:padding="@dimen/space_med">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            style="@style/TextView.Base"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="@dimen/space_med"
+            android:text="@string/app_name"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="16dp" />
+
+        <ScrollView
+            android:id="@+id/scrollViewContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/space_med"
+            android:layout_weight="1"
+            app:layout_constraintBottom_toTopOf="@+id/txtOk"
+            app:layout_constraintTop_toBottomOf="@+id/txtTitle">
+
+            <TextView
+                android:id="@+id/txtContent"
+                style="@style/TextView.Base"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:text="@string/lorem_ipsum_s"
+                tools:layout_editor_absoluteX="16dp" />
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end">
+
+            <TextView
+                android:id="@+id/txtNeutral"
+                style="@style/TextView.Base"
+                android:layout_gravity="start"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="@dimen/space_small"
+                android:text="@string/vazgec"
+                android:textColor="@color/design_default_color_primary"
+                android:visibility="invisible"
+                tools:visibility="visible" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/txtCancel"
+                style="@style/TextView.Base"
+                android:layout_marginEnd="@dimen/space_med"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="@dimen/space_small"
+                android:text="@string/iptal"
+                android:textColor="@color/design_default_color_primary"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/txtOk"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/txtOk"
+                style="@style/TextView.Base"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="@dimen/space_small"
+                android:text="@string/tamam"
+                android:textColor="@color/design_default_color_primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

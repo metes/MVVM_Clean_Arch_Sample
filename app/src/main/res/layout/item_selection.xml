@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerRoot"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/space_med"
+    android:paddingTop="@dimen/space_small"
+    android:paddingEnd="@dimen/space_med"
+    android:paddingBottom="@dimen/space_small"
+    tools:targetApi="m">
+
+    <TextView
+        android:id="@+id/txtTitle"
+        style="@style/TextView.Base"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="start"
+        android:padding="@dimen/space_small"
+        android:text="Mete Soydaş"
+        android:textColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/imgSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_med"
+        android:src="@android:drawable/checkbox_on_background"
+        android:visibility="gone" />
+</LinearLayout>
