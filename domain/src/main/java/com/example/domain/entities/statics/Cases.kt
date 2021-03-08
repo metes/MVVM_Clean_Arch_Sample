@@ -1,10 +1,10 @@
-package com.example.domain.networkModel.history
+package com.example.domain.entities.statics
 
 data class Cases(
     val `1M_pop`: String,
     val active: Int,
-    val critical: Int,
+    val critical: Any,
     val new: String,
-    val recovered: Int,
+    val recovered: Any,
     val total: Int
 )

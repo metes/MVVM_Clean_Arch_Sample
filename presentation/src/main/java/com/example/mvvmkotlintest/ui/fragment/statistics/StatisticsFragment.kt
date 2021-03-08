@@ -14,4 +14,10 @@ class StatisticsFragment : BaseFragment<FragmentStatisticsBinding, StatisticsVM>
 
     }
 
+    override fun subscribe() {
+        viewModel.staticsUseCase.content.observe(viewLifecycleOwner) {
+
+        }
+    }
+
 }

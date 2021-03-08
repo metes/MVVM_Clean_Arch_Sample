@@ -1,8 +1,8 @@
 package com.example.data
 
-import com.example.domain.networkModel.GenericResponse
-import com.example.domain.networkModel.history.HistoryResponseItem
-import com.example.domain.networkModel.statics.StaticsResponseItem
+import com.example.domain.entities.GenericResponse
+import com.example.domain.entities.history.HistoryResponseItem
+import com.example.domain.entities.statics.StaticsResponseItem
 import retrofit2.http.GET
 import retrofit2.http.Query
 

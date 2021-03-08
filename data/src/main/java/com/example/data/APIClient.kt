@@ -51,7 +51,7 @@ object APIClient {
             okHttpClientBuilder.build()
         }
 
-    val retrofitClient: APIInterface
+    val retrofitClient:APIInterface
         get() {
             return retrofitBuilder
                 .client(okHttpClient)

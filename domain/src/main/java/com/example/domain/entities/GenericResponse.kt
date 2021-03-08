@@ -1,4 +1,4 @@
-package com.example.domain.networkModel
+package com.example.domain.entities
 
 data class GenericResponse<T>(
     val errors: List<String>,

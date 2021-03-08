@@ -1,7 +1,7 @@
 package com.example.data
 
 import androidx.lifecycle.MutableLiveData
-import com.example.domain.networkModel.GenericResponse
+import com.example.domain.entities.GenericResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

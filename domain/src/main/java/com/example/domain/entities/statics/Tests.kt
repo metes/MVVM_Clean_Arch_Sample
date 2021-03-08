@@ -1,4 +1,4 @@
-package com.example.domain.networkModel.statics
+package com.example.domain.entities.statics
 
 data class Tests(
     val `1M_pop`: Any,

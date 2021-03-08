@@ -1,4 +1,4 @@
-package com.example.domain.networkModel.history
+package com.example.domain.entities.history
 
 data class Tests(
     val `1M_pop`: Any,

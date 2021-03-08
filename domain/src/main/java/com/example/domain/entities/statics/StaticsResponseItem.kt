@@ -1,6 +1,6 @@
-package com.example.domain.networkModel.history
+package com.example.domain.entities.statics
 
-data class HistoryResponseItem(
+data class StaticsResponseItem(
     val cases: Cases,
     val continent: String,
     val country: String,
