@@ -46,39 +46,10 @@ android {
 }
 
 dependencies {
-//    implementation project(':domain')
-
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-    // region - Network
-    implementation 'com.squareup.okhttp3:okhttp:4.8.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.8.0'
-    // endregion
-
-    // region - Stetho
-    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
-    // endregion
-
-    // region - Android
-    def ktc_version = '1.3.9'
-    implementation 'androidx.activity:activity-ktx:1.2.0'
-    implementation 'androidx.fragment:fragment-ktx:1.3.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
-    implementation 'com.google.android.gms:play-services-location:18.0.0'
-    // endregion
-
+    implementation libs_test.values()
+    implementation libs_network.values()
     implementation libs_hilt.values()
     kapt kapt_hilt.values()
-//
-//    implementation "com.google.dagger:hilt-android:$v_hilt"
-//    kapt "com.google.dagger:hilt-android-compiler:$v_hilt"
+
+    implementation "com.squareup.retrofit2:converter-gson:$v_retrofit"
 }
