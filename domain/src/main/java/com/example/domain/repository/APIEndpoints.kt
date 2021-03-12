@@ -8,8 +8,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 
-//@InstallIn(ApplicationComponent::class)
-//@Module
 interface APIEndpoints {
 
     @GET("/statistics")

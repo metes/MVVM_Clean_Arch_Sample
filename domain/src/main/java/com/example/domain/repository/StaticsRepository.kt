@@ -9,22 +9,20 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 import javax.inject.Singleton
 
+interface StaticsRepository {
+    fun getContentData(
+        viewModelScope: CoroutineScope,
+        result: (ArrayList<StaticsResponseItem>) -> Unit
+    )
+}
 
 @Singleton
-class StaticsRepository @Inject constructor() {
+class StaticsRepositoryImpl @Inject constructor(var apiClient: APIClient): StaticsRepository {
 
-    @Inject lateinit var apiClient: APIClient
-
-    val retrofitClient: APIEndpoints
-        get() {
-            return apiClient.retrofitBuilder
-                .client(apiClient.okHttpClient)
-                .build()
-                .create(APIEndpoints::class.java)
-        }
+     val apiEndpoints = apiClient.api.create(APIEndpoints::class.java)
 
 
-    fun getContentData(
+    override fun getContentData(
         viewModelScope: CoroutineScope,
         result: (ArrayList<StaticsResponseItem>) -> Unit
     ) {
@@ -34,7 +32,7 @@ class StaticsRepository @Inject constructor() {
             } else {
                 NetworkHandler.makeNetworkRequest(
                     viewModelScope,
-                    { retrofitClient.getStatics() },
+                    { apiEndpoints.getStatics() },
                     { result(it) },
                     { message, code, response ->
                         result(response?.resultObject ?: arrayListOf())

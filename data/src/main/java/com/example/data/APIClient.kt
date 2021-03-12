@@ -3,6 +3,10 @@ package com.example.data
 import android.util.Log
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.GsonBuilder
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,27 +18,45 @@ import javax.inject.Singleton
 const val CONNECTION_TIMEOUT_SEC = 10L
 const val BASE_URL: String = "https://covid-193.p.rapidapi.com"
 
+interface APIClient {
+    val api: Retrofit
+}
 
-//@InstallIn(ApplicationComponent::class)
-//@Module
-@Singleton
-class APIClient @Inject constructor() {
+@Module
+@InstallIn(ApplicationComponent::class)
+class APIClientImpl @Inject constructor(): APIClient{
 
     //private val sharedPref by inject<SharedPrefHelper>()
 
     private val accessToken: String? get() = ""//sharedPref.loadUser().accessToken
 
-    private val stethoInterceptor: StethoInterceptor? by lazy {
+    @get:Provides
+    @Singleton
+    val stethoInterceptor: StethoInterceptor? by lazy {
         if (BuildConfig.DEBUG) StethoInterceptor() else null
     }
 
-    val retrofitBuilder by lazy {
-        Retrofit.Builder()
+    @Singleton
+    @get:Provides
+    override val api: Retrofit
+        get() {
+            return getRetrofitBuilder()
+                .client(okHttpClient)
+                .build()
+//                .create(APIEndpoints::class.java)
+        }
+
+    @Singleton
+    @Provides
+    fun getRetrofitBuilder(): Retrofit.Builder {
+        return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
     }
 
-    private val okHttpClientBuilder by lazy {
+    @get:Provides
+    @Singleton
+    val okHttpClientBuilder by lazy {
         val builder = OkHttpClient.Builder()
             .connectTimeout(CONNECTION_TIMEOUT_SEC, TimeUnit.SECONDS)
             .readTimeout(CONNECTION_TIMEOUT_SEC, TimeUnit.SECONDS)
@@ -42,6 +64,8 @@ class APIClient @Inject constructor() {
         builder
     }
 
+    @get:Provides
+    @Singleton
     val okHttpClient: OkHttpClient by lazy {
             okHttpClientBuilder.addInterceptor { chain ->
                 val builder = chain.request().newBuilder()

@@ -5,21 +5,8 @@ import androidx.lifecycle.LiveData
 import com.example.domain.entities.statics.StaticsResponseItem
 import com.example.domain.repository.StaticsRepository
 import com.example.domain.repository.post
-import dagger.Binds
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import kotlinx.coroutines.CoroutineScope
 import javax.inject.Inject
-
-
-@InstallIn(ApplicationComponent::class)
-@Module
-abstract class StaticsUseCaseModule {
-
-    @Binds
-    abstract fun bindStaticsUseCase(impl: StaticsUseCaseImpl): StaticsUseCase
-}
 
 
 interface StaticsUseCase {
@@ -29,9 +16,9 @@ interface StaticsUseCase {
     )
 }
 
-class StaticsUseCaseImpl @Inject constructor(): StaticsUseCase {
+class StaticsUseCaseImpl @Inject constructor(var repository: StaticsRepository): StaticsUseCase {
 
-    @Inject lateinit var repository: StaticsRepository
+//    @Inject lateinit
 
     override fun getContent(viewModelScope: CoroutineScope, content: LiveData<ArrayList<StaticsResponseItem>>) {
         Log.d("StaticsUseCase", "StaticsUseCase çalıştı *************")
