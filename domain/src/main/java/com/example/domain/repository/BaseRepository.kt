@@ -1,30 +1,26 @@
 package com.example.domain.repository
 
-import com.example.data.APIInterface
-import com.example.data.NetworkHandler
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import javax.inject.Inject
 
-open class BaseRepository(val api: APIInterface) {
+open class BaseRepository @Inject constructor() {
 
-    val networkHandler: NetworkHandler by lazy { NetworkHandler() }
-
-
-
-//    fun <T> sendRequestSilent(
-//        viewModelScope: CoroutineScope,
-//        client: suspend () -> GenericResponse<T>,
-//        onSuccess: ((T) -> Unit)? = null
-//    ) {
-//        val onFailed =  { _: String?, _: Int?, _: T? -> }
-//        networkHandler.makeAPIRequest(client, onSuccess, onFailed, null)
-//    }
+//    @Inject
+//    lateinit var networkHandler: NetworkHandler
 //
-//    fun <T> sendRequest(
-//        viewModelScope: CoroutineScope,
-//        client: suspend () -> GenericResponse<T>,
-//        onSuccess: ((T) -> Unit),
-//        onErrorAction: ((String?, Int?, T?) -> Unit)
-//    ) {
-//        makeAPIRequest(client, onSuccess, onErrorAction, loadingDetection)
-//    }
+//    @Inject
+//    lateinit var api: APIInterface
+//
+//    val retrofitClient: APIInterface
+//        get() {
+//            return APIClient.retrofitBuilder
+//                .client(APIClient.okHttpClient)
+//                .build()
+//                .create(APIInterface::class.java)
+//        }
+}
 
+fun <T> LiveData<T>.post(value: T) {
+    (this as MutableLiveData).postValue(value)
 }

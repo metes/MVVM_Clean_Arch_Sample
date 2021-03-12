@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.mvvmkotlintest.BuildConfig
 import com.example.mvvmkotlintest.R
-import com.example.mvvmkotlintest.ui.custom.GeneralDialog
 
 abstract class BaseToolsFragment : Fragment() {
 
@@ -15,8 +14,11 @@ abstract class BaseToolsFragment : Fragment() {
         onCancelClicked: (() -> Unit)? = null,
         onOkClicked: (() -> Unit)? = null
     ) {
-        GeneralDialog(titleText ?: "", this, null, onOkClicked, onCancelClicked).newInstance()
-            .show(childFragmentManager, "")
+//        GeneralDialog(titleText ?: "", this, null, onOkClicked, onCancelClicked).newInstance()
+//            .show(childFragmentManager, "")
+//        generalDialog.titleText = titleText ?: ""
+//        generalDialog.functionOk = onOkClicked
+//        generalDialog.functionCancel = onCancelClicked
     }
 
     fun Spanned.showAsDialog(
@@ -24,8 +26,8 @@ abstract class BaseToolsFragment : Fragment() {
         onCancelClicked: (() -> Unit)? = null,
         onOkClicked: (() -> Unit)? = null
     ) {
-        GeneralDialog(titleText ?: "", null, this, onOkClicked, onCancelClicked).newInstance()
-            .show(childFragmentManager, "")
+//        GeneralDialog(titleText ?: "", null, this, onOkClicked, onCancelClicked).newInstance()
+//            .show(childFragmentManager, "")
     }
 
 

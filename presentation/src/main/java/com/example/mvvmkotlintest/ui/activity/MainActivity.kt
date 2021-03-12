@@ -6,7 +6,9 @@ import coil.load
 import com.example.mvvmkotlintest.base.BaseActivity
 import com.example.mvvmkotlintest.base.NavigateFragmentParams
 import com.example.mvvmkotlintest.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity :
     BaseActivity<ActivityMainBinding, MainActivityVM>(ActivityMainBinding::inflate) {
 
@@ -14,6 +16,7 @@ class MainActivity :
 
     override fun initViews() {
         // TODO("Not yet implemented")
+        "MainActivity:".length
     }
 
     override fun changeBackground(resId: Int, color: Boolean) {

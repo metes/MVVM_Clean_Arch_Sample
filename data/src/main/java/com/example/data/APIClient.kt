@@ -7,12 +7,18 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
+import javax.inject.Singleton
 
 
 const val CONNECTION_TIMEOUT_SEC = 10L
 const val BASE_URL: String = "https://covid-193.p.rapidapi.com"
 
-object APIClient {
+
+//@InstallIn(ApplicationComponent::class)
+//@Module
+@Singleton
+class APIClient @Inject constructor() {
 
     //private val sharedPref by inject<SharedPrefHelper>()
 
@@ -22,7 +28,7 @@ object APIClient {
         if (BuildConfig.DEBUG) StethoInterceptor() else null
     }
 
-    private val retrofitBuilder by lazy {
+    val retrofitBuilder by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
@@ -36,12 +42,12 @@ object APIClient {
         builder
     }
 
-    private val okHttpClient: OkHttpClient by lazy {
+    val okHttpClient: OkHttpClient by lazy {
             okHttpClientBuilder.addInterceptor { chain ->
                 val builder = chain.request().newBuilder()
                 builder.addHeader("Content-Type", "application/json")
-                builder.addHeader("x-rapidapi-key", BuildConfig.api_key)
-                builder.addHeader("x-rapidapi-host", BuildConfig.api_host)
+                builder.addHeader("x-rapidapi-key", "BuildConfig.api_key")
+                builder.addHeader("x-rapidapi-host", "BuildConfig.api_host")
                 if (!accessToken.isNullOrBlank()) {
                     builder.addHeader("authorization", "Bearer $accessToken")
                 }
@@ -51,13 +57,7 @@ object APIClient {
             okHttpClientBuilder.build()
         }
 
-    val retrofitClient:APIInterface
-        get() {
-            return retrofitBuilder
-                .client(okHttpClient)
-                .build()
-                .create(APIInterface::class.java)
-        }
+
 
 }
 

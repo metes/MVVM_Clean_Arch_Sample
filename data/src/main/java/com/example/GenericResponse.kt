@@ -1,4 +1,4 @@
-package com.example.domain.entities
+package com.example
 
 data class GenericResponse<T>(
     val errors: List<String>,

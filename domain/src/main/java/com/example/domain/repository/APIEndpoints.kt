@@ -1,12 +1,16 @@
-package com.example.data
+package com.example.domain.repository
 
-import com.example.domain.entities.GenericResponse
+
+import com.example.GenericResponse
 import com.example.domain.entities.history.HistoryResponseItem
 import com.example.domain.entities.statics.StaticsResponseItem
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface APIInterface {
+
+//@InstallIn(ApplicationComponent::class)
+//@Module
+interface APIEndpoints {
 
     @GET("/statistics")
     suspend fun getStatics(): GenericResponse<ArrayList<StaticsResponseItem>>

@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
 import androidx.transition.TransitionInflater
 import androidx.viewbinding.ViewBinding
 import androidx.work.*
@@ -44,6 +43,7 @@ abstract class BaseFragment<BindingType : ViewBinding, out ViewModelType : BaseV
     private val baseActivity by lazy { activity as BaseActivity<*, *>? }
 
     val isOnline: Boolean get() = CommonUtils.isOnline(context)
+
 
 
     override fun onCreateView(
@@ -85,7 +85,7 @@ abstract class BaseFragment<BindingType : ViewBinding, out ViewModelType : BaseV
     }
 
     private fun subscribeDialogs() {
-        viewModel.dialogDetection.observeThis { params ->
+        viewModel.dialogDetection.observe(viewLifecycleOwner) { params ->
             params.second.showAsDialog(params.first, null, {
                 params.third?.let { it() }
             })
@@ -93,13 +93,13 @@ abstract class BaseFragment<BindingType : ViewBinding, out ViewModelType : BaseV
     }
 
     private fun subscribeErrors() {
-        viewModel.networkErrorDetection.observeThis {
+        viewModel.networkErrorDetection.observe(viewLifecycleOwner) {
             it.showAsErrorDialog()
         }
     }
 
     private fun subscribeActions() {
-        viewModel.reloadAppDetection.observeThis {
+        viewModel.reloadAppDetection.observe(viewLifecycleOwner) {
             baseActivity?.reloadActivity()
         }
         /*
@@ -116,13 +116,6 @@ abstract class BaseFragment<BindingType : ViewBinding, out ViewModelType : BaseV
         "Not have a binding variable".showAsLog()
     }
 
-    fun <T> LiveData<T>.observeThis(function: (T) -> Unit) {
-        observe(viewLifecycleOwner) {
-            it?.let {
-                function(it)
-            }
-        }
-    }
 
     private fun changeFragmentBackground(resId: Int, isColor: Boolean = false) {
         baseActivity?.changeBackground(resId, isColor)

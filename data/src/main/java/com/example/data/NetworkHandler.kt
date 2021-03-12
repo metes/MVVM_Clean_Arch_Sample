@@ -1,20 +1,23 @@
 package com.example.data
 
 import androidx.lifecycle.MutableLiveData
-import com.example.domain.entities.GenericResponse
+import com.example.GenericResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-class NetworkHandler {
+//@InstallIn(ApplicationComponent::class)
+//@Module
+object NetworkHandler  {
 
-    val generalErrorMessage = "unknown error" // todo
+    private val generalErrorMessage = "unknown error" // todo
 
     enum class RequestState {
         Loading, Invisible, Error
     }
+
 
     fun <T> makeNetworkRequest(
         coroutineScope: CoroutineScope,
