@@ -34,6 +34,7 @@ class APIClientImpl @Inject constructor(): APIClient{
     @Singleton
     val stethoInterceptor: StethoInterceptor? by lazy {
         if (BuildConfig.DEBUG) StethoInterceptor() else null
+
     }
 
     @Singleton
